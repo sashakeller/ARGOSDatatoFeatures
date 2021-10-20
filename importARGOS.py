@@ -7,25 +7,26 @@
 ## Usage: ImportArgos <ARGOS folder> <Output feature class> 
 ##
 ## Created: Fall 2021
-## Author: alexander.keller@duke.edu (for ENV859)
+## Author: John.Fay@duke.edu (for ENV859)
 ##---------------------------------------------------------------------
 
 # Import modules
 import sys, os, arcpy
 
 # Set input variables (Hard-wired)
-inputFile = 'C:/Users/asd/Documents/Duke/2021_2022/Fall/Advanced_GIS/ARGOSTracking/data/ARGOSdata/1997dg.txt'
-outputFC = "C:/Users/asd/Documents/Duke/2021_2022/Fall/Advanced_GIS/ARGOSTracking/scratchARGOStrack.shp"
+inputFile = 'C:/Users/asd/Documents/Duke/2021_2022/Fall/Advanced_GIS/ARGOSTracking/data/ARGOSData/1997dg.txt'
+outputFC = "C:/Users/asd/Documents/Duke/2021_2022/Fall/Advanced_GIS/ARGOSTracking/Scratch/ARGOStrack.shp"
 
-#%% Construct a while loop to iterate through all lines in the data file
-# Open the ARGOS data file for reading
-inputFileObj= open(inputFile, 'r')
+#%% Construct a while loop and iterate through all lines in the data file
+# Open the ARGOS data file
+inputFileObj = open(inputFile,'r')
 
 # Get the first line of data, so we can use the while loop
 lineString = inputFileObj.readline()
 
-# Start the while loop
+#Start the while loop
 while lineString:
+    
     # Set code to run only if the line contains the string "Date: "
     if ("Date :" in lineString):
         
@@ -44,9 +45,14 @@ while lineString:
         # Extract the date we need to variables
         obsLat = line2Data[2]
         obsLon= line2Data[5]
+                    
+        # Extract the date, time, and LC values
+        obsDate = lineData[3]
+        obsTime = lineData[4]
+        obsLC   = lineData[7]
         
         # Print results to see how we're doing
-        print (tagID,"Lat:"+obsLat,"Long:"+obsLon)
+        print (tagID,"Lat:"+obsLat,"Long:"+obsLon, obsLC, obsDate, obsTime)
         
     # Move to the next line so the while loop progresses
     lineString = inputFileObj.readline()
