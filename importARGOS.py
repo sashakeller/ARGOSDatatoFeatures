@@ -13,9 +13,17 @@
 # Import modules
 import sys, os, arcpy
 
+# Allow outputs to be overwritten
+arcpy.env.overwriteOutput = True
+
 # Set input variables (Hard-wired)
 inputFile = 'C:/Users/asd/Documents/Duke/2021_2022/Fall/Advanced_GIS/ARGOSTracking/data/ARGOSData/1997dg.txt'
+outputSR = arcpy.SpatialReference(53002)
 outputFC = "C:/Users/asd/Documents/Duke/2021_2022/Fall/Advanced_GIS/ARGOSTracking/Scratch/ARGOStrack.shp"
+
+# Create a feature class to which we will add features
+outPath, outFile = os.path.split(outputFC)
+arcpy.management.CreateFeatureclass(outPath, outFile, "POINT", "", "", "", outputSR)
 
 #%% Construct a while loop and iterate through all lines in the data file
 # Open the ARGOS data file
@@ -59,3 +67,4 @@ while lineString:
     
 #Close the file object
 inputFileObj.close()
+
