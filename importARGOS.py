@@ -18,7 +18,7 @@ arcpy.env.overwriteOutput = True
 
 # Set input variables (Hard-wired)
 inputFile = 'C:/Users/asd/Documents/Duke/2021_2022/Fall/Advanced_GIS/ARGOSTracking/data/ARGOSData/1997dg.txt'
-outputSR = arcpy.SpatialReference(53002)
+outputSR = arcpy.SpatialReference(54002)
 outputFC = "C:/Users/asd/Documents/Duke/2021_2022/Fall/Advanced_GIS/ARGOSTracking/Scratch/ARGOStrack.shp"
 
 # Create a feature class to which we will add features
